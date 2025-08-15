@@ -1,6 +1,6 @@
-**FaceCam – Hệ thống nhận diện khuôn mặt từ camera**
+**FaceCam – Hệ thống an ninh nhận diện khuôn mặt từ camera**
 
-FaceCam là dự án biến luồng camera HTTP thành hệ thống nhận diện khuôn mặt thời gian thực, có giao diện quản trị (admin) để quản lý danh sách người/ảnh mẫu và camera, cùng giao diện người dùng (user) để xem luồng và lịch sử nhận diện. Backend viết bằng FastAPI, lưu dữ liệu PostgreSQL, xử lý nhận diện bằng DeepFace (mặc định Facenet). Frontend viết bằng React (Ant Design). Có sẵn Docker/Docker Compose để chạy nhanh.
+FaceCam là hệ thống an ninh thông minh cho phép giám sát và xác nhận danh tính khách hàng, biến luồng camera HTTP thành hệ thống nhận diện khuôn mặt thời gian thực, có giao diện quản trị (admin) để quản lý danh sách người/ảnh mẫu và camera, cùng giao diện người dùng (user) để xem luồng và lịch sử nhận diện. Backend sử dụng FastAPI, lưu dữ liệu bằng PostgreSQL, xử lý nhận diện bằng DeepFace (mặc định Facenet) và Frontend viết bằng React (Ant Design). Triển khai qua Docker/Docker Compose.
 
 **Tính năng chính**
 
