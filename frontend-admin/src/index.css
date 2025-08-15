@@ -1,0 +1,4 @@
+body { margin: 0; font-family: Inter, Arial, Helvetica, sans-serif; }
+.app-container { padding: 16px; }
+.ant-layout { min-height: 100vh; }
+.img-live { width: 100%; height: auto; border: 1px solid #ddd; }

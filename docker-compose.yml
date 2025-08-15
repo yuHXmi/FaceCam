@@ -1,0 +1,52 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: camera-backend
+    ports:
+      - "8000:8000"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: camera
+      POSTGRES_HOST: db
+      DATA_DIR: /data/uploads
+    volumes:
+      - ./backend:/app/backend   # code (dev)
+      - uploads_data:/data/uploads  # lưu ảnh vào volume
+    depends_on:
+      - db
+
+  frontend-user:
+    build:
+      context: ./frontend-user
+      args:
+        REACT_APP_API_URL: http://camera-backend:8000
+    container_name: camera-frontend-user
+    ports:
+      - "3001:80"
+
+  frontend-admin:
+    build:
+      context: ./frontend-admin
+      args:
+        REACT_APP_API_URL: http://camera-backend:8000
+    container_name: camera-frontend-admin
+    ports:
+      - "3002:80"
+
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: camera
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:
+  uploads_data:

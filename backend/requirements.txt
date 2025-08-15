@@ -1,0 +1,13 @@
+fastapi
+uvicorn[standard]
+sqlalchemy
+pydantic
+python-multipart
+opencv-python-headless
+deepface
+numpy
+Pillow
+aiofiles
+python-dotenv
+tf-keras
+psycopg2-binary
