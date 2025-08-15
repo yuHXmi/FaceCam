@@ -1,8 +1,8 @@
-FaceCam – Hệ thống nhận diện khuôn mặt từ camera 
+**FaceCam – Hệ thống nhận diện khuôn mặt từ camera**
 
 FaceCam là dự án biến luồng camera HTTP thành hệ thống nhận diện khuôn mặt thời gian thực, có giao diện quản trị (admin) để quản lý danh sách người/ảnh mẫu và camera, cùng giao diện người dùng (user) để xem luồng và lịch sử nhận diện. Backend viết bằng FastAPI, lưu dữ liệu PostgreSQL, xử lý nhận diện bằng DeepFace (mặc định Facenet). Frontend viết bằng React (Ant Design). Có sẵn Docker/Docker Compose để chạy nhanh.
 
-Tính năng chính
+**Tính năng chính**
 
 📷 Quản lý đa camera qua HTTP stream.
 
@@ -14,8 +14,8 @@ Tính năng chính
 
 🗂️ Xem lịch sử nhận diện gần đây.
 
-Kiến trúc & thành phần
-
+**Kiến trúc & thành phần**
+```bash
 FaceCam/
 ├─ backend/                # FastAPI + xử lý nhận diện
 │  ├─ main.py              # Khởi tạo app, CORS, mount /uploads, đăng ký routers
@@ -42,13 +42,13 @@ FaceCam/
 │
 ├─ Dockerfile.backend      # Dockerfile cho backend
 └─ docker-compose.yml      # Orchestrate backend + 2 frontend (+ service db)
+```
 
-
-Yêu cầu hệ thống
+**Yêu cầu hệ thống**
 
 Docker & Docker Compose
 
-Cài đặt & chạy nhanh với Docker
+**Cài đặt & chạy nhanh với Docker**
 
 Tại thư mục gốc FaceCam/, chạy:
 
@@ -56,7 +56,7 @@ Tại thư mục gốc FaceCam/, chạy:
 docker-compose up --build
 ```
 
-Truy cập:
+**Truy cập:**
 
 Backend: http://localhost:8000
 
@@ -64,13 +64,13 @@ Frontend User: http://localhost:3001
 
 Frontend Admin: http://localhost:3002
 
-Hướng dẫn sử dụng
+**Hướng dẫn sử dụng**
 
 Thêm người (ảnh mẫu) – Mở Frontend Admin → tab People → nhập name và upload ảnh rõ mặt. Hệ thống sẽ trích xuất embedding và lưu.
 
 Thêm camera – Vào tab Cameras → nhập name + RTSP/HTTP URL (ví dụ RTSP từ IP camera). Backend sẽ tạo thread đọc luồng và bắt đầu nhận diện.
 
-Xem luồng & lịch sử –
+**Xem luồng & lịch sử**
 
 MJPEG stream: GET /api/stream/{cam_id} (có thể nhúng <img src=...>).
 
@@ -78,7 +78,7 @@ Lịch sử: GET /api/history (frontend hiển thị kèm ảnh snapshot, tên n
 
 Xoá người/camera – Qua giao diện admin hoặc API tương ứng.
 
-Các API chính (rút gọn):
+**Các API chính:**
 
 POST /api/people/add – multipart form (name, file)
 
@@ -96,7 +96,7 @@ GET /api/history – lịch sử nhận diện
 
 GET /api/stream/{cam_id} – MJPEG stream
 
-Tuỳ chỉnh & cấu hình
+**Tuỳ chỉnh & cấu hình**
 
 Ngưỡng khớp (match_threshold): mặc định 0.5 trong backend/camera_manager.py. Giảm để nhận diện khắt khe hơn, tăng để dễ khớp hơn.
 
@@ -108,21 +108,20 @@ CORS: hiện mở allow_origins=["*"] trong main.py, có thể siết lại doma
 
 Database: PostgreSQL.
 
-Lưu ý hiệu năng
+**Lưu ý hiệu năng**
 
 DeepFace lần đầu sẽ tải trọng số model → khởi động chậm. Sau đó cache sẽ nhanh hơn.
 
-Dùng opencv-python-headless (đã có trong requirements) cho môi trường server.
 
 MJPEG stream: đây là luồng multipart đơn giản; trình duyệt hiển thị được nhưng không có âm thanh và độ trễ phụ thuộc CPU/mạng.
 
-Phát triển & mở rộng
+**Phát triển & mở rộng**
 
 Thêm phân quyền/tài khoản thay vì CORS mở.
 
 Chuẩn hoá logging, giám sát các thread camera.
 
-Dockerhub 
+**Dockerhub**
 
 Backend:https://hub.docker.com/repository/docker/iamxhuy/facecam-backend/general
 
@@ -130,5 +129,6 @@ Frontend-admin: https://hub.docker.com/repository/docker/iamxhuy/facecam-fronten
 
 Frontend-user: https://hub.docker.com/repository/docker/iamxhuy/facecam-frontend-user/general
 
-Tác giả 
+**Tác giả** 
+
 Hà Xuân Huy
